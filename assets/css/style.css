@@ -1,0 +1,231 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;600&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: #2e2e2e;
+  -webkit-background-clip: text;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo {
+  font-family: "Lobster", cursive;
+  font-size: 1.5rem;
+}
+
+.start_button {
+  background: linear-gradient(#ff63ae, #d464fc);
+  padding: 0.3rem 0.6rem;
+  border-radius: 25px;
+  cursor: pointer;
+  text-align: center;
+}
+.start_button a {
+  color: white;
+}
+
+main {
+  background: transparent;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #242424;
+  height: 10vh;
+  align-items: center;
+  padding: 0 1.3rem;
+  z-index: 1;
+}
+
+nav p {
+  flex: 2;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+nav a {
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  flex: 1;
+}
+
+.grid {
+  margin: 0rem 1.3rem;
+  margin-top: 8rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.grid_item p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  color: rgb(218, 218, 218);
+  margin-top: 1rem;
+  width: 90%;
+}
+
+.header {
+  font-family: "Lobster", cursive !important;
+  font-size: 3rem !important;
+  color: white !important;
+}
+
+.grid_item a {
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+.grid_item div {
+  background: linear-gradient(#ff63ae, #d464fc);
+  padding: 0.3rem 0rem;
+  border-radius: 25px;
+  margin-top: 4.5rem;
+  text-align: center;
+  width: 40%;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.grid img {
+  height: 100%;
+  width: 100%;
+}
+
+.overlay {
+  position: fixed;
+  overflow: hidden;
+  height: 80%;
+  width: 80%;
+  top: 20%;
+  z-index: -1;
+}
+
+.header-download {
+  width: 50%;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.header-download h6 {
+  font-size: 3rem;
+  font-family: "Lobster", cursive;
+  color: white;
+}
+
+.header-download p {
+  font-family: "Poppins", sans-serif;
+  color: rgb(218, 218, 218);
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+section div {
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+section a {
+  background: linear-gradient(#ff63ae, #d464fc);
+  border-radius: 25px;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  text-align: center;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  border: none;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.coming-soon {
+  text-align: center;
+  margin: 3rem auto;
+}
+
+.coming-soon p {
+  font-size: 5rem;
+  color: white;
+  font-family: "Lobster", cursive;
+}
+
+@media only screen and (max-width: 800px) {
+  nav a {
+    font-size: 0.8rem;
+  }
+
+  .grid_item div {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 666px) {
+  .grid_item div {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    padding: 0.3rem 1rem;
+  }
+
+  nav p {
+    flex: 1;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .grid_item div {
+    margin-top: 5rem;
+    font-size: 2rem;
+    padding: 0.3rem 1rem;
+  }
+  .grid_item p {
+    font-size: 1.3rem;
+  }
+  .grid_item h6 {
+    font-size: 1.7rem;
+  }
+  nav a {
+    font-size: 1.2rem;
+  }
+
+  nav p {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .grid {
+    margin: 0rem 1.3rem;
+    margin-top: 8rem;
+    display: block;
+  }
+
+  .grid img {
+    margin-top: 2rem;
+  }
+
+  .grid_item p {
+    text-align: center;
+  }
+
+  .grid_item div {
+    margin: 1rem auto;
+  }
+}
