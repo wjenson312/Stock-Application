@@ -228,4 +228,8 @@ section a {
   .grid_item div {
     margin: 1rem auto;
   }
+
+  nav a {
+    font-size: 0.6rem;
+  }
 }
