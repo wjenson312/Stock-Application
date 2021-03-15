@@ -23,7 +23,7 @@ exports.create = (req, res) => {
   stock
     .save(stock)
     .then((data) => {
-      res.redirect("/download-page");
+      res.send({ message: "Saved to DB" });
     })
     .catch((err) => {
       res.status(500).send({

@@ -17,8 +17,14 @@ async function GetFromStockDB() {
   return content;
 }
 
-let data = GetFromStockDB();
+// exports.writeToFile = () => {
+//   let data = GetFromStockDB();
+//   data.then((stocks) => {
+//     fs.writeFile("DailyGainers.csv", stocks, () => {});
+//   });
+// };
 
+let data = GetFromStockDB();
 data.then((stocks) => {
   fs.writeFile("DailyGainers.csv", stocks, () => {});
 });

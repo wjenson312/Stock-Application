@@ -1,17 +1,11 @@
-const axios = require("axios");
+setInterval(() => {
+  let now = new Date();
+  let date = `${now.getHours()}:${now.getMinutes()}`;
 
-axios
-  .post("http://localhost:3000/api/stocks", {
-    Ticker: "ABCD",
-    CompanyName: "EFGH",
-    MarketCap: "9999999",
-    PERatio: "7",
-  })
-  .then(
-    (response) => {
-      console.log(response);
-    },
-    (error) => {
-      console.log(error.message);
-    }
-  );
+  if (date === "23:0") {
+    console.log("It is 11:00");
+    setTimeout(() => {
+      console.log("5 mins have passed");
+    }, 300000);
+  }
+}, 57000);
