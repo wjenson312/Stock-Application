@@ -89,16 +89,16 @@ function PopulateDB() {
     });
 }
 
-// clearDB.clear();
-// PopulateDB();
+clearDB.clear();
+PopulateDB();
 
-setInterval(() => {
-  let now = new Date();
-  let date = `${now.getHours()}:${now.getMinutes()}`;
+// setInterval(function () {
+//   let now = new Date();
+//   let date = `${now.getHours()}:${now.getMinutes()}`;
 
-  if (date === "7:0") {
-    clearDB.clear();
-    PopulateDB();
-    setTimeout(write.writeToFile(), 1200000);
-  }
-}, 57000);
+//   if (date === "7:0") {
+//     clearDB.clear();
+//     PopulateDB();
+//     setTimeout(write.writeToFile(), 1200000);
+//   }
+// }, 57000);

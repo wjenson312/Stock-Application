@@ -17,14 +17,14 @@ async function GetFromStockDB() {
   return content;
 }
 
-exports.writeToFile = () => {
-  let data = GetFromStockDB();
-  data.then((stocks) => {
-    fs.writeFile("DailyGainers.csv", stocks, () => {});
-  });
-};
+// exports.writeToFile = () => {
+//   let data = GetFromStockDB();
+//   data.then((stocks) => {
+//     fs.writeFile("DailyGainers.csv", stocks, () => {});
+//   });
+// };
 
-// let data = GetFromStockDB();
-// data.then((stocks) => {
-//   fs.writeFile("DailyGainers.csv", stocks, () => {});
-// });
+let data = GetFromStockDB();
+data.then((stocks) => {
+  fs.writeFile("DailyGainers.csv", stocks, () => {});
+});
