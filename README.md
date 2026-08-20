@@ -24,6 +24,7 @@ A Node.js/Express web app that scrapes daily top-gaining stock tickers from Yaho
 .
 ├── server.js              # App entrypoint
 ├── server/
+│   ├── auth.js               # Admin-key middleware for write/delete routes
 │   ├── connection.js       # MongoDB connection
 │   ├── controller.js       # API route handlers (create/find/delete stock records)
 │   ├── model.js             # Mongoose schema for stock records
@@ -71,6 +72,7 @@ cp config.env.example config.env
 | `MONGO_URI` | MongoDB connection string |
 | `API_KEY` | Alpha Vantage API key |
 | `TEMP_API_KEY` | Secondary Alpha Vantage API key |
+| `ADMIN_API_KEY` | Shared secret required to create/delete stock records (any random string, e.g. `openssl rand -hex 24`) |
 
 ### Running the app
 
@@ -88,15 +90,22 @@ The scraper populates the database with the day's top gainers and their financia
 node scraping/getData.js
 ```
 
-This clears existing records, scrapes current gainers from Yahoo Finance, and fetches financial data for each ticker from Alpha Vantage (rate-limited to stay within the free API tier).
+This clears existing records, scrapes current gainers from Yahoo Finance, and fetches financial data for each ticker from Alpha Vantage (rate-limited to stay within the free API tier). It needs the server running (`npm start`) since it talks to the local API.
 
 ## API
 
-| Method | Route | Description |
-|---|---|---|
-| `GET` | `/api/stocks` | Get all stored stock records |
-| `POST` | `/api/stocks` | Create a stock record |
-| `DELETE` | `/api/stocks` | Delete all stock records |
+| Method | Route | Auth | Description |
+|---|---|---|---|
+| `GET` | `/api/stocks` | none | Get all stored stock records |
+| `POST` | `/api/stocks` | `x-api-key: <ADMIN_API_KEY>` header | Create a stock record |
+| `DELETE` | `/api/stocks` | `x-api-key: <ADMIN_API_KEY>` header | Delete all stock records |
+
+The `POST` and `DELETE` routes are destructive/write operations, so they require the `x-api-key` header to match `ADMIN_API_KEY` from your `config.env`. Requests without it get a `401`.
+
+## Known Limitations
+
+- Dependencies are patched against non-breaking known vulnerabilities (`npm audit fix`). A handful of remaining advisories require major-version bumps (Mongoose 5→9, a nested `nodemon` dependency) that would need code changes to the DB connection layer — see `npm audit` for details.
+- Scraping Yahoo Finance's HTML (`scraping/initScrape.js`) is fragile by nature and will break if their page structure changes.
 
 ## License
 

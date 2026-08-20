@@ -1,7 +1,11 @@
 const scrape = require("./initScrape");
 const axios = require("axios");
+const dotenv = require("dotenv");
+const path = require("path");
 const write = require("./writeToFile");
 const clearDB = require("./clearDB");
+
+dotenv.config({ path: path.resolve(__dirname, "../config.env") });
 
 const tickers = scrape("https://finance.yahoo.com/gainers/?offset=0&count=100");
 
@@ -58,19 +62,23 @@ function PopulateDB() {
             for (let k = 0; k < data.length; ++k) {
               console.log("Sending Request");
               axios
-                .post("http://localhost:3000/api/stocks", {
-                  Ticker: data[k].Ticker,
-                  CompanyName: data[k].CompanyName,
-                  MarketCap: data[k].MarketCap,
-                  PERatio: data[k].PERatio,
-                  TrailingPE: data[k].TrailingPE,
-                  ForwardPE: data[k].ForwardPE,
-                  DividendPerShare: data[k].DividendPerShare,
-                  DividendYield: data[k].DividendYield,
-                  GrossProfitTTM: data[k].GrossProfitTTM,
-                  RevenueTTM: data[k].RevenueTTM,
-                  AnalystTargetPrice: data[k].AnalystTargetPrice,
-                })
+                .post(
+                  "http://localhost:3000/api/stocks",
+                  {
+                    Ticker: data[k].Ticker,
+                    CompanyName: data[k].CompanyName,
+                    MarketCap: data[k].MarketCap,
+                    PERatio: data[k].PERatio,
+                    TrailingPE: data[k].TrailingPE,
+                    ForwardPE: data[k].ForwardPE,
+                    DividendPerShare: data[k].DividendPerShare,
+                    DividendYield: data[k].DividendYield,
+                    GrossProfitTTM: data[k].GrossProfitTTM,
+                    RevenueTTM: data[k].RevenueTTM,
+                    AnalystTargetPrice: data[k].AnalystTargetPrice,
+                  },
+                  { headers: { "x-api-key": process.env.ADMIN_API_KEY } }
+                )
                 .then(
                   (response) => {
                     console.log(response);
